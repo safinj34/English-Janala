@@ -1,3 +1,10 @@
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
+
 const createEelemts=(arr)=>{const htmlElements=arr.map(el=>`<span class="btn">${el}</span>`)
 return (htmlElements.join(" "))}
 
@@ -73,7 +80,7 @@ const displayLevelWord=(words)=>{const wordContainer=document.getElementById("wo
     words.forEach(word=>{
         
         const card=document.createElement("div")
-        card.innerHTML=`<div class="bg-white rounded-xl shadow-sm text-center py-10 px-5"><h2 class="font-bold text-xl">${word.word ? word.word : "word pawa jaini"}</h2><p class="font-semibold">Meaning /Pronounciation</p><div></div><p class="font-bangla">"${word.meaning ? word.meaning : "meaning pawa jai ni"} / ${word.pronunciation ? word.pronunciation : "pronouncition pawa jai ni"}"</p> <div class="flex justify-between items-center"><button onclick="loadWordDetail(${word.id})" class="btn bg-[#37495710] hover:bg-[#37495780]"><i class="fa-solid fa-circle-info"></i></button><button class="btn bg-[#37495710] hover:bg-[#37495780]"><i class="fa-solid fa-volume-high"></i></button></div></div>`
+        card.innerHTML=`<div class="bg-white rounded-xl shadow-sm text-center py-10 px-5"><h2 class="font-bold text-xl">${word.word ? word.word : "word pawa jaini"}</h2><p class="font-semibold">Meaning /Pronounciation</p><div></div><p class="font-bangla">"${word.meaning ? word.meaning : "meaning pawa jai ni"} / ${word.pronunciation ? word.pronunciation : "pronouncition pawa jai ni"}"</p> <div class="flex justify-between items-center"><button onclick="loadWordDetail(${word.id})" class="btn bg-[#37495710] hover:bg-[#37495780]"><i class="fa-solid fa-circle-info"></i></button><button onclick="pronounceWord('${word.word}')" class="btn bg-[#37495710] hover:bg-[#37495780]"><i class="fa-solid fa-volume-high"></i></button></div></div>`
         wordContainer.append(card)
     })
     managespinner(false)
